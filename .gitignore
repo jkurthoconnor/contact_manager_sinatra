@@ -1,1 +1,33 @@
-*swp
+# idiosyncracies #
+
+*coverage/
+ref*.*
+rf*.*
+scrap*
+*list.md
+assessment*
+nts*.*
+temp*
+video_challenge*
+*goal*
+whats_next.md
+
+# logs and databases #
+
+*.sql
+*.log
+
+# vim #
+
+*.swp
+*.swo
+*.swn
+*.swm
+
+# enviroment variables #
+
+.env
+
+# libraries #
+
+handlebars-v*.js
