@@ -15,6 +15,7 @@ whats_next.md
 # logs and databases #
 
 *.sql
+*.sqlite3
 *.log
 
 # vim #
