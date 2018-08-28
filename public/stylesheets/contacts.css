@@ -34,6 +34,12 @@ header p {
   margin-bottom: 0;
 }
 
+h2 {
+  border-bottom: 1px solid lightgrey;
+  font-size: 30px;
+  font-weight: 400;
+}
+
 h3 {
   font-size: 24px;
   font-weight: 400;
@@ -43,7 +49,7 @@ h3 {
   color: #333333;
 }
 
-.display-box {
+.display-box, .form-box {
   box-sizing: border-box;
   padding: 20px 0;
   width: 720px;
@@ -72,4 +78,25 @@ h3 {
   margin-left: 250px;
   font-size: 14px;
   width: 140px;
+}
+
+
+dl {
+  margin: 20 auto;
+  text-align: center;
+}
+
+dd, dt {
+  box-sizing: border-box;
+  font-weight: 600;
+  display: inline-block;
+  vertical-align: middle; /* aligns label and field text in middle */
+}
+
+.form-box {
+  background-color: #fff;
+}
+
+form .button {
+  background-color: #fff;
 }
