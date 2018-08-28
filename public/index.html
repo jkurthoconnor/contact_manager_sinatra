@@ -4,11 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Contact Manager using Backbone.js, Localstorage, RequireJS, Handlebar and Bootstrap</title>
+  <link rel="stylesheet" href="/stylesheets/contacts.css">
   <script type="text/javascript" src="/javascripts/jquery.js"></script>
   <script type="text/javascript" src="/javascripts/handlebars.js"></script>
+  <script type="text/javascript" src="/javascripts/contacts.js"></script>
 </head>
 <body>
+  <header>
+    <h1><a href="#">Contact Manager</a></h1>
+    <p>Using Backbone.js, Localstorage, RequireJS, Handlebar and Bootstrap</p>
+  </header>
+  <div class="canvas">
+    <div class="search-add-bar display-box">
+      <a href="#" class="button">Add Contact</a>
+      <input class="search-input" type="text" placeholder="Search">
+    </div>
+    <div class="main-panel display-box">
+      <ul class="contacts-list display-box">
+      </ul>
+    
+      <div class="zero-contacts display-box">
+        <h3>There are no contacts.</h3>
+        <a href="#" class="button">Add Contact</a>
+      </div>
+    </div>
+    <div class="message display-box">
+      <h3 class="search-display">There is no contact starting with <span></span></h3>
+    </div>
+  </div>
+    <footer>
+      <p>Modeled off <a href="http://devsaran.github.io/contact-manager-backbone/#home">Devsaran's example</a> of a Contact Manager<p>
+    </footer>
 
 </body>
 </html>
