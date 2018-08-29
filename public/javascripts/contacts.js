@@ -36,6 +36,14 @@ $(function() {
     });
   }
 
+    function searchContacts(searchStr, contactList) {
+      let pattern = new RegExp('^' + searchStr, 'i');
+
+      return contactList.filter(function(contact) {
+        return contact.full_name.match(pattern);
+      });
+    }
+   
   function editContact(formObj, id) {
 
     $.ajax({
