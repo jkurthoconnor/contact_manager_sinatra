@@ -18,12 +18,10 @@ $(function() {
       type: 'GET',
       dataType: 'json',
       success: function(json) {
-        console.log(json);
+        console.log(json); // save json return in a variable
       }
     });
   }
-
-
 
   function addContact(formObj) {
 
@@ -31,6 +29,19 @@ $(function() {
       url: 'http://localhost:4567/api/contacts', 
       data: formObj,
       type: 'POST',
+      dataType: 'json',
+      success: function(json) {
+        console.log(json);
+      }
+    });
+  }
+
+  function editContact(formObj, id) {
+
+    $.ajax({
+      url: `http://localhost:4567/api/contacts/${id}`,
+      data: formObj,
+      type: 'PUT',
       dataType: 'json',
       success: function(json) {
         console.log(json);
