@@ -94,6 +94,7 @@ dd, dt {
 }
 
 .form-box {
+  display: none;
   background-color: #fff;
 }
 

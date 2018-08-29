@@ -56,5 +56,18 @@
       <p>Modeled off <a href="http://devsaran.github.io/contact-manager-backbone/#home">Devsaran's example</a> of a Contact Manager<p>
     </footer>
 
+    <script id="contacts-li" type="text/x-handlebars">
+      {{#each contacts}}
+      <li data-contact={{id}}>
+        <h3>{{full_name}}</h3>
+        <dl>
+          <dt>Phone Number:</dt>
+          <dd>{{phone_number}}</dd>
+          <dt>Email:</dt>
+          <dd>{{email}}</dd>
+        </dl>
+      </li>
+      {{/each}}
+    </script>
 </body>
 </html>
