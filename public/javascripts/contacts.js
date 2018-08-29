@@ -3,7 +3,7 @@ $(function() {
   let contactList;
   let $contactsUL = $('.contacts-list');
   let $noContactsBox = $('.zero-contacts');
-  let $editContactBox = $('.form-box');
+  let $formBox = $('.form-box');
 
   let contactsTemplate = $('#contacts-li').html();
   let contactsListScript = Handlebars.compile(contactsTemplate);
@@ -55,10 +55,10 @@ $(function() {
       dataType: 'json',
       success: function() {
         getContacts();
-        $('.form-box').slideUp();
+        $formBox.slideUp();
         $('.search-add-bar').slideDown();
         $('.main-panel').slideDown();
-        $('.form-box').empty();
+        $formBox.empty();
       },
     });
   }
@@ -81,10 +81,10 @@ $(function() {
       dataType: 'json',
       success: function(json) {
         getContacts();
-        $('.form-box').slideUp();
+        $formBox.slideUp();
         $('.search-add-bar').slideDown();
         $('.main-panel').slideDown();
-        $('.form-box').empty();
+        $formBox.empty();
       }
     });
   }
@@ -102,14 +102,14 @@ $(function() {
 
   $('.search-add-bar > a').on('click', function(e) {
     console.log(addContactTemplate);  
-    $('.form-box').html(addContactTemplate);
+    $formBox.html(addContactTemplate);
     $('.search-add-bar').slideUp();
     $('.main-panel').slideUp();
     $('.message').slideUp();
-    $('.form-box').slideDown();
+    $formBox.slideDown();
   });
 
-  $('.form-box').on('submit', '#add', function (e) {
+  $formBox.on('submit', '#add', function (e) {
     e.preventDefault();
     let  data = $(this).serializeArray();
     let jsonReady = processFormData(data);
@@ -118,7 +118,7 @@ $(function() {
   });
 
 
-  $('.form-box').on('submit', '#edit-form', function (e) {
+  $formBox.on('submit', '#edit-form', function (e) {
     e.preventDefault();
     let id = $(this).attr('data-contact');
     let  data = $(this).serializeArray();
@@ -142,12 +142,12 @@ $(function() {
     })[0];
 
     let editHTML = editContactScript(contact); 
-    $editContactBox.html(editHTML);
+    $formBox.html(editHTML);
 
     $('.search-add-bar').slideUp(); // extract: also used for show add contact
     $('.main-panel').slideUp();     //
     $('.message').slideUp();        //
-    $('.form-box').slideDown(); // unique; provide `down` argument
+    $formBox.slideDown(); // unique; provide `down` argument
   });
 
 
