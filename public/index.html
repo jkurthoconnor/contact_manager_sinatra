@@ -51,6 +51,8 @@
         <button class="button">Cancel</button>
       </form>
     </div>
+    <div class="edit-form-box">
+    </div>
   </div>
     <footer>
       <p>Modeled off <a href="http://devsaran.github.io/contact-manager-backbone/#home">Devsaran's example</a> of a Contact Manager<p>
@@ -63,11 +65,38 @@
         <dl>
           <dt>Phone Number:</dt>
           <dd>{{phone_number}}</dd>
+        </dl>
+        <dl>
           <dt>Email:</dt>
           <dd>{{email}}</dd>
         </dl>
-      </li>
+      <div class="edit-button-grp">
+        <a href="#" data-contact={{id}} data-role="edit">Edit</a>
+        <a href="#" data-contact={{id}} data-role="delete">Delete</a>
+        </li>
+      </div>
       {{/each}}
+    </script>
+
+    <script id="edit-contact-form" type="text/x-handlebars">
+      <h2>Edit Contact</h2>
+      <form class="contact-form edit-form" data-contact={{id}}>
+        <dl>
+          <dt><label for="name">Full name:</label></dt>
+          <dd><input type="text" name="full_name" id="name" value={{full_name}}></dd>
+        </dl> 
+        <dl>
+         <dt><label for="email">Email address:</label></dt>
+          <dd><input type="text" name="email" id="email" value={{email}}></dd>
+        </dl> 
+        <dl>
+          <dt><label for="phone">Telephone number:</label></dt>
+          <dd><input type="phone" name="phone_number" id="phone" value={{phone_number}}></dd>
+        </dl> 
+        <button class="button" type="submit">Submit</button>
+        <button class="button">Cancel</button>
+      </form>
+    </div>
     </script>
 </body>
 </html>

@@ -65,12 +65,49 @@ h3 {
   width: 750px;
 }
 
+.contacts-list {
+  padding: 0;
+  background-color: #fff;
+}
+
+.contacts-list li {
+  display: inline-block;
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgrey;
+  width: 200px;
+  text-align: left;
+}
+
+.contacts-list dt,
+.contacts-list dd,
+.contacts-list dl {
+  display: block;
+  margin: 0;
+}
+
+.contacts-list dt {
+  font-weight: 700;
+}
+
 .button {
   font-size: 18px;
   padding: 10px 16px;
-  border: 1px solid;
+  border: 1px solid #563d7c;
   border-radius: 6px;
 }
+
+.edit-button-grp {
+  margin-top: 20px;
+}
+
+.edit-button-grp a {
+  font-size: 14px;
+  padding: 6px 12px;
+  border: 1px solid #563d7c;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
 
 .search-input {
   padding: 6px 12px;
@@ -81,12 +118,12 @@ h3 {
 }
 
 
-dl {
+form dl {
   margin: 20 auto;
   text-align: center;
 }
 
-dd, dt {
+form dd, form dt {
   box-sizing: border-box;
   font-weight: 600;
   display: inline-block;
