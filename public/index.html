@@ -23,7 +23,7 @@
     <div class="main-panel display-box">
       <ul class="contacts-list">
       </ul>
-    
+
       <div class="zero-contacts display-box">
         <h3>There are no contacts.</h3>
         <a href="#" class="button">Add Contact</a>
@@ -33,25 +33,6 @@
       <h3 class="search-display">There is no contact starting with <span></span></h3>
     </div>
     <div class="form-box">
-      <h2>Create Contact</h2>
-      <form class="contact-form">
-        <dl>
-          <dt><label for="name">Full name:</label></dt>
-          <dd><input type="text" name="full_name" id="name"></dd>
-        </dl> 
-        <dl>
-         <dt><label for="email">Email address:</label></dt>
-          <dd><input type="text" name="email" id="email"></dd>
-        </dl> 
-        <dl>
-          <dt><label for="phone">Telephone number:</label></dt>
-          <dd><input type="phone" name="phone_number" id="phone"></dd>
-        </dl> 
-        <button class="button" type="submit">Submit</button>
-        <button class="button">Cancel</button>
-      </form>
-    </div>
-    <div class="edit-form-box">
     </div>
   </div>
     <footer>
@@ -80,7 +61,7 @@
 
     <script id="edit-contact-form" type="text/x-handlebars">
       <h2>Edit Contact</h2>
-      <form class="contact-form edit-form" data-contact={{id}}>
+      <form id="edit-form" class="contact-form" data-contact={{id}}>
         <dl>
           <dt><label for="name">Full name:</label></dt>
           <dd><input type="text" name="full_name" id="name" value={{full_name}}></dd>
@@ -97,6 +78,27 @@
         <button class="button">Cancel</button>
       </form>
     </div>
+    </script>
+
+    <script id="add-contact-form" type="text/html">
+      <h2>Create Contact</h2>
+      <form id="add" class="contact-form">
+        <dl>
+          <dt><label for="name">Full name:</label></dt>
+          <dd><input type="text" name="full_name" id="name"></dd>
+        </dl> 
+        <dl>
+         <dt><label for="email">Email address:</label></dt>
+          <dd><input type="text" name="email" id="email"></dd>
+        </dl> 
+        <dl>
+          <dt><label for="phone">Telephone number:</label></dt>
+          <dd><input type="phone" name="phone_number" id="phone"></dd>
+        </dl> 
+        <button class="button" type="submit">Submit</button>
+        <button class="button">Cancel</button>
+      </form>
+
     </script>
 </body>
 </html>
