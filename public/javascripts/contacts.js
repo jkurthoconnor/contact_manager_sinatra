@@ -4,6 +4,7 @@ $(function() {
   let $contactsUL = $('.contacts-list');
   let $noContactsBox = $('.zero-contacts');
   let $formBox = $('.form-box');
+  let $search = $('#search-input');
 
   let contactsTemplate = $('#contacts-li').html();
   let contactsListScript = Handlebars.compile(contactsTemplate);
@@ -42,10 +43,9 @@ $(function() {
   }
 
   function drawContactsList(jsonObj) {
-    contactList = jsonObj;
-    let contactsHTML = contactsListScript({contacts: contactList });
+    let contactsHTML = contactsListScript({contacts: jsonObj });
 
-    if (contactList.length > 0) {
+    if (jsonObj.length > 0) {
       $contactsUL.html(contactsHTML).show();
       $noContactsBox.hide();
     }
@@ -57,6 +57,7 @@ $(function() {
       type: 'GET',
       dataType: 'json',
       success: function(json) {
+        contactList = json;
         drawContactsList(json);
       }
     });
@@ -71,12 +72,6 @@ $(function() {
       success: function() {
         getContacts();
         showMain();
-        /*
-        $formBox.slideUp();
-        $('.search-add-bar').slideDown();
-        $('.main-panel').slideDown();
-        $formBox.empty();
-        */
       },
     });
   }
@@ -117,6 +112,18 @@ $(function() {
 
   $('.search-add-bar > a').on('click', function(e) {
     showForm(addContactTemplate);
+  });
+
+  $search.on('keyup', function(e) {
+    let searchString = $search.val();
+    let matchingContacts = searchContacts(searchString, contactList);
+
+    if (matchingContacts.length > 0) {
+      drawContactsList(matchingContacts);
+    } else {
+      $('#search-display > span').text(searchString);
+    }
+
   });
 
   $formBox.on('submit', '#add', function (e) {

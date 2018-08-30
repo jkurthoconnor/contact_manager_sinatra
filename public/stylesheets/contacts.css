@@ -115,7 +115,7 @@ h3 {
 }
 
 
-.search-input {
+#search-input {
   padding: 6px 12px;
   border-radius: 6px;
   margin-left: 250px;
@@ -123,6 +123,10 @@ h3 {
   width: 140px;
 }
 
+
+#search-display > span {
+  font-weight: 700;
+}
 
 form dl {
   margin: 20 auto;
