@@ -66,7 +66,6 @@ $(function() {
       type: 'GET',
       dataType: 'json',
       success: function(json) {
-
         splitTags(json);
         contactList = json;
         drawContactsList(json);
@@ -82,7 +81,6 @@ $(function() {
     });
   }
 
-
   function addContact(formObj) {
     $.ajax({
       url: 'http://localhost:4567/api/contacts', 
@@ -96,10 +94,18 @@ $(function() {
     });
   }
 
-  function searchContacts(searchStr, contactList) {
+  function searchTags(searchTag, contacts) {
+    return contacts.filter(function(contact) {
+      if (contact.tags) {
+        return contact.tags.includes(searchTag);
+      }
+    })
+  }
+
+  function searchContacts(searchStr, contacts) {
     let pattern = new RegExp('^' + searchStr, 'i');
 
-    return contactList.filter(function(contact) {
+    return contacts.filter(function(contact) {
       return contact.full_name.split(/\s+/).some(function(namePart) {
         return namePart.match(pattern);
       });
@@ -157,6 +163,16 @@ $(function() {
   });
 
 
+  $('.contacts-list').on('click', 'a[data-tag]', function(e) {
+    e.preventDefault();
+    let tag = $(this).attr('data-tag');
+    let matchingContacts = searchTags(tag, contactList);
+
+    hideMessage();
+    drawContactsList(matchingContacts);
+
+  });
+
   $formBox.on('submit', '#edit-form', function (e) {
     e.preventDefault();
     let id = $(this).attr('data-contact');
@@ -185,7 +201,7 @@ $(function() {
       return contact.id === Number(id);
     })[0];
 
-    let editHTML = editContactScript(contact); 
+    let editHTML = editContactScript(contact);
     showForm(editHTML);
   });
 
