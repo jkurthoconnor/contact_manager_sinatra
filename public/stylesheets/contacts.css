@@ -148,3 +148,8 @@ form dd, form dt {
 form .button {
   background-color: #fff;
 }
+
+
+.message {
+  display: none;
+}

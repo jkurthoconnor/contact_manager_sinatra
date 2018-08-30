@@ -51,6 +51,14 @@
           <dt>Email:</dt>
           <dd>{{email}}</dd>
         </dl>
+        <dl>
+          <dt>Tags:</dt>
+          <dd>
+          {{#each tags}} 
+          <a href="#" data-tag="{{this}}">{{this}}</a>
+          {{/each}}
+          </dd>
+        </dl>
       <div class="edit-button-grp">
         <a href="#" data-contact={{id}} data-role="edit">Edit</a>
         <a href="#" data-contact={{id}} data-role="delete">Delete</a>

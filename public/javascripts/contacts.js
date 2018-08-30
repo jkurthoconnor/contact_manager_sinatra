@@ -27,7 +27,7 @@ $(function() {
   }
 
 
-  function showMain() {
+  function showMain() { // add conditional for formBox animations
     $formBox.slideUp();
     $('.search-add-bar').slideDown();
     $('.main-panel').slideDown();
@@ -40,6 +40,15 @@ $(function() {
     $('.main-panel').slideUp();
     $('.message').slideUp();
     $formBox.slideDown();
+  }
+
+  function showMessage() {
+    $('.contacts-list').slideUp();
+    $('.message').show();
+  }
+
+  function hideMessage() {
+    $('.message').hide();
   }
 
   function drawContactsList(jsonObj) {
@@ -57,11 +66,22 @@ $(function() {
       type: 'GET',
       dataType: 'json',
       success: function(json) {
+
+        splitTags(json);
         contactList = json;
         drawContactsList(json);
       }
     });
   }
+
+  function splitTags(contactsJson) {
+    contactsJson.forEach(function(contact, idx, arr) {
+      if (contact.tags) {
+        arr[idx].tags = contact.tags.split(',');
+      }
+    });
+  }
+
 
   function addContact(formObj) {
     $.ajax({
@@ -85,7 +105,7 @@ $(function() {
       });
     });
   }
-   
+
   function editContact(formObj, id) {
     $.ajax({
       url: `http://localhost:4567/api/contacts/${id}`,
@@ -118,12 +138,14 @@ $(function() {
     let searchString = $search.val();
     let matchingContacts = searchContacts(searchString, contactList);
 
+    hideMessage();
+
     if (matchingContacts.length > 0) {
       drawContactsList(matchingContacts);
     } else {
       $('#search-display > span').text(searchString);
+      showMessage();
     }
-
   });
 
   $formBox.on('submit', '#add', function (e) {
