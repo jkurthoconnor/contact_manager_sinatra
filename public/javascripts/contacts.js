@@ -102,7 +102,7 @@ $(function() {
     })
   }
 
-  function searchContacts(searchStr, contacts) {
+  function searchNames(searchStr, contacts) {
     let pattern = new RegExp('^' + searchStr, 'i');
 
     return contacts.filter(function(contact) {
@@ -142,7 +142,7 @@ $(function() {
 
   $search.on('keyup', function(e) {
     let searchString = $search.val();
-    let matchingContacts = searchContacts(searchString, contactList);
+    let matchingContacts = searchNames(searchString, contactList);
 
     hideMessage();
 
@@ -156,10 +156,20 @@ $(function() {
 
   $formBox.on('submit', '#add', function (e) {
     e.preventDefault();
-    let  data = $(this).serializeArray();
-    let jsonReady = processFormData(data);
+    let $nameField =  $('input[name="full_name"]');
 
-    addContact(jsonReady); 
+    if (!$nameField[0].validity.valid) {
+      $('dd.error-message').show();
+      $nameField.addClass('error-message');
+      return;
+    } else {
+      let data = $(this).serializeArray();
+      let jsonReady = processFormData(data);
+
+      $nameField.removeClass('error-message');
+      addContact(jsonReady); 
+    }
+
   });
 
 
@@ -170,7 +180,6 @@ $(function() {
 
     hideMessage();
     drawContactsList(matchingContacts);
-
   });
 
   $formBox.on('submit', '#edit-form', function (e) {
@@ -191,7 +200,9 @@ $(function() {
     e.preventDefault();
     let id = $(this).attr('data-contact');
 
-    deleteContact(id);
+    if (window.confirm('Do you want to delete this contact?')) {
+      deleteContact(id);
+    }
   });
 
   $('.contacts-list').on('click', 'a[data-role="edit"]', function(e) {
@@ -204,6 +215,7 @@ $(function() {
     let editHTML = editContactScript(contact);
     showForm(editHTML);
   });
+
 
 });
 

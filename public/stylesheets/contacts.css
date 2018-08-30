@@ -153,3 +153,12 @@ form .button {
 .message {
   display: none;
 }
+
+dd.error-message {
+  color: red;
+  display: none;
+}
+
+input.error-message {
+  border-color: #900;
+}
