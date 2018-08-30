@@ -26,6 +26,21 @@ $(function() {
   }
 
 
+  function showMain() {
+    $formBox.slideUp();
+    $('.search-add-bar').slideDown();
+    $('.main-panel').slideDown();
+    $formBox.empty();
+  }
+
+  function showForm(markup) {
+    $formBox.html(markup);
+    $('.search-add-bar').slideUp();
+    $('.main-panel').slideUp();
+    $('.message').slideUp();
+    $formBox.slideDown();
+  }
+
   function drawContactsList(jsonObj) {
     contactList = jsonObj;
     let contactsHTML = contactsListScript({contacts: contactList });
@@ -55,10 +70,13 @@ $(function() {
       dataType: 'json',
       success: function() {
         getContacts();
+        showMain();
+        /*
         $formBox.slideUp();
         $('.search-add-bar').slideDown();
         $('.main-panel').slideDown();
         $formBox.empty();
+        */
       },
     });
   }
@@ -81,10 +99,7 @@ $(function() {
       dataType: 'json',
       success: function(json) {
         getContacts();
-        $formBox.slideUp();
-        $('.search-add-bar').slideDown();
-        $('.main-panel').slideDown();
-        $formBox.empty();
+        showMain();
       }
     });
   }
@@ -101,12 +116,7 @@ $(function() {
   }
 
   $('.search-add-bar > a').on('click', function(e) {
-    console.log(addContactTemplate);  
-    $formBox.html(addContactTemplate);
-    $('.search-add-bar').slideUp();
-    $('.main-panel').slideUp();
-    $('.message').slideUp();
-    $formBox.slideDown();
+    showForm(addContactTemplate);
   });
 
   $formBox.on('submit', '#add', function (e) {
@@ -127,6 +137,11 @@ $(function() {
     editContact(jsonReady, id);
   });
 
+  $formBox.on('click', '#cancel', function(e) {
+    e.preventDefault();
+    showMain();
+  });
+
   $('.contacts-list').on('click', 'a[data-role="delete"]', function(e) {
     e.preventDefault();
     let id = $(this).attr('data-contact');
@@ -142,14 +157,8 @@ $(function() {
     })[0];
 
     let editHTML = editContactScript(contact); 
-    $formBox.html(editHTML);
-
-    $('.search-add-bar').slideUp(); // extract: also used for show add contact
-    $('.main-panel').slideUp();     //
-    $('.message').slideUp();        //
-    $formBox.slideDown(); // unique; provide `down` argument
+    showForm(editHTML);
   });
-
 
 });
 
