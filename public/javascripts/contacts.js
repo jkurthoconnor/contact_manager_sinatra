@@ -26,17 +26,16 @@ $(function() {
     return formDataObj;
   }
 
-
-  function showMain() { // add conditional for formBox animations
+  function showMain() {
     $formBox.slideUp();
-    $('.search-add-bar').slideDown();
+    $('#search-bar').slideDown();
     $('.main-panel').slideDown();
     $formBox.empty();
   }
 
   function showForm(markup) {
     $formBox.html(markup);
-    $('.search-add-bar').slideUp();
+    $('#search-bar').slideUp();
     $('.main-panel').slideUp();
     $('.message').slideUp();
     $formBox.slideDown();
@@ -57,6 +56,9 @@ $(function() {
     if (jsonObj.length > 0) {
       $contactsUL.html(contactsHTML).show();
       $noContactsBox.hide();
+    } else {
+      $contactsUL.hide();
+      $noContactsBox.show();
     }
   }
 
@@ -136,7 +138,7 @@ $(function() {
     });
   }
 
-  $('.search-add-bar > a').on('click', function(e) {
+  $('.add-contact-button').on('click', function(e) {
     showForm(addContactTemplate);
   });
 
@@ -169,7 +171,6 @@ $(function() {
       $nameField.removeClass('error-message');
       addContact(jsonReady); 
     }
-
   });
 
 
