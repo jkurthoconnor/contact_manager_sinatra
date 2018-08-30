@@ -16,8 +16,8 @@
     <p>Using Backbone.js, Localstorage, RequireJS, Handlebar and Bootstrap</p>
   </header>
   <div class="canvas">
-    <div class="search-add-bar display-box">
-      <a href="#" class="button">Add Contact</a>
+    <div id="search-bar" class="display-box">
+      <a href="#" class="button add-contact-button">Add Contact</a>
       <input id="search-input" type="text" placeholder="Search">
     </div>
     <div class="main-panel display-box">
@@ -26,7 +26,7 @@
 
       <div class="zero-contacts display-box">
         <h3>There are no contacts.</h3>
-        <a href="#" class="button">Add Contact</a>
+        <a href="#" class="button add-contact-button">Add Contact</a>
       </div>
     </div>
     <div class="message display-box">
@@ -36,86 +36,85 @@
     </div>
   </div>
     <footer>
-      <p>Modeled off <a href="http://devsaran.github.io/contact-manager-backbone/#home">Devsaran's example</a> of a Contact Manager<p>
+      <p>Modelled off <a href="http://devsaran.github.io/contact-manager-backbone/#home">Devsaran's example</a> of a Contact Manager<p>
     </footer>
 
-    <script id="contacts-li" type="text/x-handlebars">
-      {{#each contacts}}
-      <li data-contact={{id}}>
-        <h3>{{full_name}}</h3>
-        <dl>
-          <dt>Phone Number:</dt>
-          <dd>{{phone_number}}</dd>
-        </dl>
-        <dl>
-          <dt>Email:</dt>
-          <dd>{{email}}</dd>
-        </dl>
-        <dl>
-          <dt>Tags:</dt>
-          <dd>
-          {{#each tags}} 
-          <a href="#" data-tag="{{this}}">{{this}}</a>
-          {{/each}}
-          </dd>
-        </dl>
-      <div class="edit-button-grp">
-        <a href="#" data-contact={{id}} data-role="edit">Edit</a>
-        <a href="#" data-contact={{id}} data-role="delete">Delete</a>
-        </li>
-      </div>
-      {{/each}}
-    </script>
-
-    <script id="edit-contact-form" type="text/x-handlebars">
-      <h2>Edit Contact</h2>
-      <form id="edit-form" class="contact-form" data-contact={{id}}>
-        <dl>
-          <dt><label for="name">Full name:</label></dt>
-          <dd><input type="text" name="full_name" id="name" value={{full_name}}></dd>
-        </dl> 
-        <dl>
-         <dt><label for="email">Email address:</label></dt>
-          <dd><input type="email" name="email" id="email" value={{email}}></dd>
-        </dl> 
-        <dl>
-          <dt><label for="phone">Telephone number:</label></dt>
-          <dd><input type="phone" name="phone_number" id="phone" value={{phone_number}}></dd>
-        </dl> 
-        <dl>
-          <dt><label for="tags">Tags:</label></dt>
-          <dd><input type="text" name="tags" id="tags" value={{tags}}></dd>
-        </dl> 
-        <button class="button" type="submit">Submit</button>
-        <button id="cancel" class="button">Cancel</button>
-      </form>
+  <script id="contacts-li" type="text/x-handlebars">
+    {{#each contacts}}
+    <li data-contact={{id}}>
+      <h3>{{full_name}}</h3>
+      <dl>
+        <dt>Phone Number:</dt>
+        <dd>{{phone_number}}</dd>
+      </dl>
+      <dl>
+        <dt>Email:</dt>
+        <dd>{{email}}</dd>
+      </dl>
+      <dl>
+        <dt>Tags:</dt>
+        <dd>
+        {{#each tags}} 
+        <a href="#" data-tag="{{this}}">{{this}}</a>
+        {{/each}}
+        </dd>
+      </dl>
+    <div class="edit-button-grp">
+      <a href="#" data-contact={{id}} data-role="edit">Edit</a>
+      <a href="#" data-contact={{id}} data-role="delete">Delete</a>
+      </li>
     </div>
-    </script>
+    {{/each}}
+  </script>
 
-    <script id="add-contact-form" type="text/html">
-      <h2>Create Contact</h2>
-      <form id="add" class="contact-form" novalidate>
-        <dl>
-          <dt><label for="name">Full name:</label></dt>
-          <dd><input type="text" name="full_name" id="name" required></dd>
-          <dd class="error-message">Name is required</dd>
-        </dl> 
-        <dl>
-         <dt><label for="email">Email address:</label></dt>
-          <dd><input type="email" name="email" id="email"></dd>
-        </dl> 
-        <dl>
-          <dt><label for="phone">Telephone number:</label></dt>
-          <dd><input type="phone" name="phone_number" id="phone"></dd>
-        </dl> 
-        <dl>
-          <dt><label for="tags">Tags:</label></dt>
-          <dd><input type="text" name="tags" id="tags"></dd>
-        </dl> 
-        <button class="button" type="submit">Submit</button>
-        <button id="cancel" class="button">Cancel</button>
-      </form>
+  <script id="edit-contact-form" type="text/x-handlebars">
+    <h2>Edit Contact</h2>
+    <form id="edit-form" class="contact-form" data-contact={{id}}>
+      <dl>
+        <dt><label for="name">Full name:</label></dt>
+        <dd><input type="text" name="full_name" id="name" value={{full_name}}></dd>
+      </dl> 
+      <dl>
+       <dt><label for="email">Email address:</label></dt>
+        <dd><input type="email" name="email" id="email" value={{email}}></dd>
+      </dl> 
+      <dl>
+        <dt><label for="phone">Telephone number:</label></dt>
+        <dd><input type="phone" name="phone_number" id="phone" value={{phone_number}}></dd>
+      </dl> 
+      <dl>
+        <dt><label for="tags">Tags:</label></dt>
+        <dd><input type="text" name="tags" id="tags" value={{tags}}></dd>
+      </dl> 
+      <button class="button" type="submit">Submit</button>
+      <button id="cancel" class="button">Cancel</button>
+    </form>
+  </script>
 
-    </script>
+  <script id="add-contact-form" type="text/html">
+    <h2>Create Contact</h2>
+    <form id="add" class="contact-form" novalidate>
+      <dl>
+        <dt><label for="name">Full name:</label></dt>
+        <dd><input type="text" name="full_name" id="name" required></dd>
+        <dd class="error-message">Name is required</dd>
+      </dl> 
+      <dl>
+       <dt><label for="email">Email address:</label></dt>
+        <dd><input type="email" name="email" id="email"></dd>
+      </dl> 
+      <dl>
+        <dt><label for="phone">Telephone number:</label></dt>
+        <dd><input type="phone" name="phone_number" id="phone"></dd>
+      </dl> 
+      <dl>
+        <dt><label for="tags">Tags:</label></dt>
+        <dd><input type="text" name="tags" id="tags"></dd>
+      </dl> 
+      <button class="button" type="submit">Submit</button>
+      <button id="cancel" class="button">Cancel</button>
+    </form>
+
+  </script>
 </body>
 </html>
