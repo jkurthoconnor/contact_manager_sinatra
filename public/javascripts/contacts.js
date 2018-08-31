@@ -95,7 +95,7 @@ $(function() {
       });
     },
 
-    collectUniqueTags: function(contacts) { // hook for tag display
+    collectUniqueTags: function(contacts) {
       let uniqueTags = [];
 
       contacts.forEach(function(contact) {
