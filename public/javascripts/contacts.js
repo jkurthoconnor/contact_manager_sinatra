@@ -13,6 +13,9 @@ $(function() {
   let editContactTemplate = $('#edit-contact-form').html();
   let editContactScript = Handlebars.compile(editContactTemplate);
 
+  let tagsListTemplate = $('#tag-filters').html();
+  let tagsListScript = Handlebars.compile(tagsListTemplate);
+
   const api = {
     getContacts: function() {
       $.ajax({
@@ -23,6 +26,7 @@ $(function() {
           helpers.splitTags(json);
           contactList = json;
           ui.drawContactsList(json);
+          ui.drawTagsList(helpers.collectUniqueTags(json));
         }
       });
     },
@@ -91,10 +95,28 @@ $(function() {
       });
     },
 
-    searchTags: function(searchTag, contacts) {
+    collectUniqueTags: function(contacts) { // hook for tag display
+      let uniqueTags = [];
+
+      contacts.forEach(function(contact) {
+        if (contact.tags) {
+          contact.tags.forEach(function(tag) {
+            if (!uniqueTags.includes(tag)) {
+              uniqueTags.push(tag);
+            }
+          });
+        }
+      });
+
+      return uniqueTags;
+    },
+
+    searchTags: function(selectedTags, contacts) {
       return contacts.filter(function(contact) {
         if (contact.tags) {
-          return contact.tags.includes(searchTag);
+          return contact.tags.some(function(tag) {
+           return selectedTags.includes(tag)
+          });
         }
       })
     },
@@ -134,6 +156,12 @@ $(function() {
     hideMessage: function() {
       $('.message').hide();
     },
+
+    drawTagsList: function(tagsArr) {
+      let tagsHTML = tagsListScript({tags: tagsArr});
+      $('#tag-list').html(tagsHTML);
+    },
+
 
     drawContactsList: function(jsonObj) {
       let contactsHTML = contactsListScript({contacts: jsonObj });
@@ -185,11 +213,26 @@ $(function() {
     }
   });
 
+  $('#tag-list').on('change', 'form', function(e) {
+    e.preventDefault();
+
+    let tags = [];
+    let matchingContacts;
+
+    $('#tag-list input:checked').each(function() {
+      tags.push($(this).attr('data-tag'));
+    });
+
+    matchingContacts = helpers.searchTags(tags, contactList);
+    ui.drawContactsList(matchingContacts);
+  });
+
   $contactsUL.on('click', 'a[data-tag]', function(e) {
     e.preventDefault();
     let tag = $(this).attr('data-tag');
-    let matchingContacts = helpers.searchTags(tag, contactList);
+    let matchingContacts = helpers.searchTags([tag], contactList);
 
+    console.log(helpers.collectUniqueTags(contactList));
     ui.hideMessage();
     ui.drawContactsList(matchingContacts);
   });

@@ -20,7 +20,12 @@
       <a href="#" class="button add-contact-button">Add Contact</a>
       <input id="search-input" type="text" placeholder="Search">
     </div>
+
+    <div id="tag-list">
+    </div>
+
     <div class="main-panel display-box">
+
       <ul class="contacts-list">
       </ul>
 
@@ -38,6 +43,22 @@
     <footer>
       <p>Modelled off <a href="http://devsaran.github.io/contact-manager-backbone/#home">Devsaran's example</a> of a Contact Manager<p>
     </footer>
+
+  <script id="tag-filters" type="text/x-handlebars">
+    <form id="tag-filter-form">
+      <h3>Search Tags</h3>
+      <ul>
+        {{#each tags}}
+        <li>
+          <label>
+            <input type="checkbox" value="{{this}}" data-tag="{{this}}" checked>
+            {{this}}
+          </label>
+        </li>
+        {{/each}}
+      </ul>
+    </form>
+  </script>
 
   <script id="contacts-li" type="text/x-handlebars">
     {{#each contacts}}
@@ -114,7 +135,6 @@
       <button class="button" type="submit">Submit</button>
       <button id="cancel" class="button">Cancel</button>
     </form>
-
   </script>
 </body>
 </html>

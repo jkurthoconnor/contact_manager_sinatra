@@ -83,6 +83,21 @@ h3 {
   min-width: 750px;
 }
 
+#tag-list {
+  text-align: left;
+  padding: 0 50px;
+}
+
+#tag-list h3 {
+  padding: 0 50px;
+}
+
+#tag-list li {
+  width: 100px;
+  list-style-type: none;
+  display: inline-block;
+}
+
 .contacts-list {
   padding: 0;
   background-color: #fff;
