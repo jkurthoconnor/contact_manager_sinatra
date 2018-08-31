@@ -127,7 +127,7 @@ $(function() {
     },
 
     showMessage: function() {
-      $('.contacts-list').slideUp();
+      $contactsUL.slideUp();
       $('.message').show();
     },
 
@@ -185,7 +185,7 @@ $(function() {
     }
   });
 
-  $('.contacts-list').on('click', 'a[data-tag]', function(e) {
+  $contactsUL.on('click', 'a[data-tag]', function(e) {
     e.preventDefault();
     let tag = $(this).attr('data-tag');
     let matchingContacts = helpers.searchTags(tag, contactList);
@@ -208,7 +208,7 @@ $(function() {
     ui.showMain();
   });
 
-  $('.contacts-list').on('click', 'a[data-role="delete"]', function(e) {
+  $contactsUL.on('click', 'a[data-role="delete"]', function(e) {
     e.preventDefault();
     let id = $(this).attr('data-contact');
 
@@ -217,7 +217,7 @@ $(function() {
     }
   });
 
-  $('.contacts-list').on('click', 'a[data-role="edit"]', function(e) {
+  $contactsUL.on('click', 'a[data-role="edit"]', function(e) {
     e.preventDefault();
     let id = $(this).attr('data-contact');
     let contact =  contactList.filter(function(contact) {
