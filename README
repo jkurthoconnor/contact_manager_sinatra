@@ -1,0 +1,9 @@
+Clone of http://devsaran.github.io/contact-manager-backbone/ using JavaScript, jQuery, Handlebars on top of Sinatra.
+
+To run the app, navigate to project root:
+
+`$ bundle install`
+`$ ruby contacts.rb`
+
+App url: http://localhost:4567
+
